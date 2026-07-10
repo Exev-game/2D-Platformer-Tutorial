@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animator;
     bool isFacingRight = true;
+    public ParticleSystem smokeFX;
+
     //Header Movement
     public float moveSpeed = 5f;
 
@@ -113,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpPower);
                 jumpsRemaining--;
                 //animator trigger jump animation
-                animator.SetTrigger("jump");
+                JumpFX();
             }
             else if (context.canceled)
             {
@@ -121,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
                 jumpsRemaining--;
                 //animator trigger jump animation
-                animator.SetTrigger("jump");
+                JumpFX();
             }
         }
         //Walljumping
@@ -131,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocity = new Vector2(wallJumpDirection * wallJumpPower.x, wallJumpPower.y); //Jump away from wall
             wallJumpTimer = 0;
             //animator trigger jump animation
-            animator.SetTrigger("jump");
+            JumpFX();
 
             //force flip
             if (transform.localScale.x != wallJumpDirection)
@@ -145,6 +147,13 @@ public class PlayerMovement : MonoBehaviour
             Invoke(nameof(CancelWallJump), wallJumpTime + 0.1f); //Wall Jump will last for 0.5f and character can jump again in 0.6f
         }
 
+    }
+
+    //animates jump AND smoke effect
+    private void JumpFX()
+    {
+        animator.SetTrigger("jump");
+        smokeFX.Play();
     }
 
     //Checks if there is Ground (Anything on Ground layer) below player ep.4... later changed to give ability to double jump again
@@ -177,6 +186,13 @@ public class PlayerMovement : MonoBehaviour
             Vector3 ls = transform.localScale;
             ls.x *= -1f;
             transform.localScale = ls;
+
+            //smoke effect
+            if(rb.linearVelocity.y == 0)
+            {
+                smokeFX.Play();
+            }
+            
         }
     }
 
