@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +8,10 @@ public class GameController : MonoBehaviour
     int progressAmount;
     public Slider progressSlider;
 
+    public GameObject player;
+    public GameObject LoadCanvas;
+    public List<GameObject> levels;
+    private int currentLevelIndex = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -13,6 +19,8 @@ public class GameController : MonoBehaviour
         progressAmount = 0;
         progressSlider.value = 0;
         Gem.OnGemCollect += IncreaseProgressAmount;
+        HoldToLoadLevel.OnHoldComplete += LoadNextLevel;
+        LoadCanvas.SetActive(false);
     }
 
     //Increases progress on Gem bar
@@ -25,6 +33,7 @@ public class GameController : MonoBehaviour
         if(progressAmount >= 100)
         {
             //Level complete!
+            LoadCanvas.SetActive(true); //Lets the player load the next level aka show the ability to load next level
             Debug.Log("Level Compelte");
         }
     }
@@ -34,4 +43,20 @@ public class GameController : MonoBehaviour
     {
         
     }
+
+    void LoadNextLevel()
+    {
+        int nextLevelIndex = (currentLevelIndex == levels.Count - 1) ? 0 : currentLevelIndex + 1; //Moves the player to the next level. If there are no next levels left, it takes us to the first level, called level 0 in the script.
+        LoadCanvas.SetActive(false);
+
+        levels[currentLevelIndex].gameObject.SetActive(false);//disables the current level
+        levels[nextLevelIndex].gameObject.SetActive(true);//activates the next level
+
+        player.transform.position = new Vector3(0, 0, 0);
+
+        currentLevelIndex = nextLevelIndex;
+        progressAmount = 0;
+        progressSlider.value = 0;
+    }
+
 }
