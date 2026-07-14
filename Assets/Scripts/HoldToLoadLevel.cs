@@ -19,12 +19,14 @@ public class HoldToLoadLevel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("update toimii");
         if (isHolding)
         {
+            Debug.Log("is holding toimii");
             holdTimer += Time.deltaTime;
             fillCircle.fillAmount = holdTimer / holdDuration;
-            if (holdTimer >= holdDuration) 
-                    {
+            if (holdTimer >= holdDuration)
+            {
                 OnHoldComplete.Invoke();
                 ResetHold();
 
