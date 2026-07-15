@@ -11,6 +11,7 @@ public class Gem : MonoBehaviour, IItem
     {
         OnGemCollect.Invoke(worth);
         Destroy(gameObject);  // collects (in code it destroys) the gems
+        AudioManager.Instance.PlaySFX("PickUp"); //Playes the pick up sound
     }
 
 

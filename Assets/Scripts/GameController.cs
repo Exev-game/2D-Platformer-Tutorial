@@ -35,6 +35,9 @@ public class GameController : MonoBehaviour
             //Level complete!
             LoadCanvas.SetActive(true); //Lets the player load the next level aka show the ability to load next level
             Debug.Log("Level Compelte");
+            AudioManager.Instance.musicSource.Stop();
+            AudioManager.Instance.PlaySFX("LevelComplete"); //Playes the the level Complete sound
+
         }
     }
 

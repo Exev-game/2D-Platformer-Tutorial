@@ -107,6 +107,8 @@ public class PlayerMovement : MonoBehaviour
     //jumping funtions
     public void Jump(InputAction.CallbackContext context) // enables jumping
     {
+        
+
         if (jumpsRemaining > 0) // can't jump infinately
         {
             if (context.performed)
@@ -114,17 +116,20 @@ public class PlayerMovement : MonoBehaviour
                 //Hold down jump button = full height
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpPower);
                 jumpsRemaining--;
-                //animator trigger jump animation
-                JumpFX();
+               
+                JumpFX(); //animator trigger jump animation
+                AudioManager.Instance.PlaySFX("Jump"); //Playes the jump sound
             }
             else if (context.canceled)
             {
                 //Light tap of jump button = half the height
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
                 jumpsRemaining--;
-                //animator trigger jump animation
-                JumpFX();
+                
+                JumpFX();//animator trigger jump animation
+                
             }
+            
         }
         //Walljumping
         if(context.performed && wallJumpTimer >0f)
