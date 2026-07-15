@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour
     private bool isGrounded;
     private bool shouldJump; //tells the enemy to jump
 
+    public int damage = 1; //How much damage the enemy causes, ep #14
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
