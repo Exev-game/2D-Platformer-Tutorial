@@ -35,7 +35,7 @@ public class GameController : MonoBehaviour
             //Level complete!
             LoadCanvas.SetActive(true); //Lets the player load the next level aka show the ability to load next level
             Debug.Log("Level Compelte");
-            AudioManager.Instance.musicSource.Stop();
+            AudioManager.Instance.musicSource.Stop(); //Stops the game theme music
             AudioManager.Instance.PlaySFX("LevelComplete"); //Playes the the level Complete sound
 
         }
@@ -51,6 +51,7 @@ public class GameController : MonoBehaviour
     {
         int nextLevelIndex = (currentLevelIndex == levels.Count - 1) ? 0 : currentLevelIndex + 1; //Moves the player to the next level. If there are no next levels left, it takes us to the first level, called level 0 in the script.
         LoadCanvas.SetActive(false);
+        
 
         levels[currentLevelIndex].gameObject.SetActive(false);//disables the current level
         levels[nextLevelIndex].gameObject.SetActive(true);//activates the next level
@@ -60,6 +61,8 @@ public class GameController : MonoBehaviour
         currentLevelIndex = nextLevelIndex;
         progressAmount = 0;
         progressSlider.value = 0;
+
+        AudioManager.Instance.PlayMusic("Theme"); //Plays the main theme when a new level loads
     }
 
 }
