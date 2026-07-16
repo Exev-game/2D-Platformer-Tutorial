@@ -55,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
+        if (Time.timeScale == 0f) { return; } //Checks if time is passing. If game is paused. It won't do anything in the update. This code can cause bugs.
 
         //Checks if player has jumps remaining
         GroundCheck();
@@ -107,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
     //jumping funtions
     public void Jump(InputAction.CallbackContext context) // enables jumping
     {
-        
+        if (Time.timeScale == 0f) { return; } //Checks if time is passing. If game is paused, player won't jump. This code can cause bugs.
 
         if (jumpsRemaining > 0) // can't jump infinately
         {
