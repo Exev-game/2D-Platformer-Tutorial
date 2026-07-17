@@ -44,6 +44,9 @@ public class PlayerMovement : MonoBehaviour
     float wallJumpTimer;
     public Vector2 wallJumpPower = new Vector2(5f, 10f);
 
+    //Header Fixing that Hold E won't flip
+    public GameObject HoldE;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -188,13 +191,19 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isFacingRight && horizontalMovement < 0 || !isFacingRight && horizontalMovement > 0)
         {
+            HoldE.transform.SetParent(null); //Hold E won't flip
+
+
             isFacingRight = !isFacingRight;
             Vector3 ls = transform.localScale;
             ls.x *= -1f;
             transform.localScale = ls;
 
+            HoldE.transform.SetParent(gameObject.transform);
+            HoldE.transform.position = transform.position;
+
             //smoke effect
-            if(rb.linearVelocity.y == 0)
+            if (rb.linearVelocity.y == 0)
             {
                 smokeFX.Play();
             }
