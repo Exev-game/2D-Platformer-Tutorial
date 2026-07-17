@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
@@ -88,6 +89,14 @@ public class GameController : MonoBehaviour
         AudioManager.Instance.PlayMusic("Theme"); //Plays the main theme when a new level loads
 
         HoldE.SetActive(false); //hides HoldE
+    }
+
+
+    public void restartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        AudioManager.Instance.PlayMusic("Theme");//restarts the music
     }
 
 }
