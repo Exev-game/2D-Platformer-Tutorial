@@ -66,6 +66,8 @@ public class GameController : MonoBehaviour
         progressSlider.value = 0;
 
         AudioManager.Instance.PlayMusic("Theme"); //Plays the main theme when a new level loads
+
+        HoldE.SetActive(false); //hides HoldE
     }
 
 }
