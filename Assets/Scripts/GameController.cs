@@ -39,6 +39,10 @@ public class GameController : MonoBehaviour
     {
         gameOverScreen.SetActive(true);
 
+        //Audio
+        AudioManager.Instance.musicSource.Stop(); //Stops the game theme music
+        AudioManager.Instance.PlaySFX("Lose");//plays lose effect
+
     }
 
     //Increases progress on Gem bar
