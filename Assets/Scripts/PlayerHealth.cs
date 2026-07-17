@@ -1,6 +1,7 @@
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using System;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -8,7 +9,10 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 1;
     private int currentHealth;
 
-   //tästä puuttuu heart toiminto
+
+    //tästä puuttuu heart toiminto
+
+    public static event Action OnPlayerDied;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -16,6 +20,7 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
         //Tästä puuttuu heart toiminto
+
     }
 
 
@@ -38,6 +43,15 @@ public class PlayerHealth : MonoBehaviour
         {
             Debug.Log("player dead toimii");
             //player dead
+
+            OnPlayerDied.Invoke();
+
+
+
+
+
+
+
         }
     }
 

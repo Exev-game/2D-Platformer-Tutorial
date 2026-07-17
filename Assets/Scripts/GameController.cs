@@ -11,8 +11,15 @@ public class GameController : MonoBehaviour
     public GameObject player;
     public GameObject LoadCanvas; // load circle
     public GameObject HoldE; //Hold E canvas
+    
     public List<GameObject> levels;
     private int currentLevelIndex = 0;
+
+
+    public GameObject gameOverScreen;
+
+
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,8 +28,17 @@ public class GameController : MonoBehaviour
         progressSlider.value = 0;
         Gem.OnGemCollect += IncreaseProgressAmount;
         HoldToLoadLevel.OnHoldComplete += LoadNextLevel;
+
+        PlayerHealth.OnPlayerDied += GameOverScreen;
         LoadCanvas.SetActive(false); //circle
         HoldE.SetActive(false); // Hold E
+        gameOverScreen.SetActive(false); //Game over Screen
+    }
+
+    void GameOverScreen()
+    {
+        gameOverScreen.SetActive(true);
+
     }
 
     //Increases progress on Gem bar
