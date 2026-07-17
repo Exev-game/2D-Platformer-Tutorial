@@ -574,6 +574,7 @@ MonoBehaviour:
   progressSlider: {fileID: 621683916}
   player: {fileID: 1039057105}
   LoadCanvas: {fileID: 389729070}
+  HoldE: {fileID: 0}
   levels:
   - {fileID: 1134359895}
   - {fileID: 1621769027}
@@ -8391,7 +8392,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7781615603871915309, guid: 3126fc8adf266aa45953d6a9fab40df7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19520,7 +19521,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7781615603871915309, guid: 3126fc8adf266aa45953d6a9fab40df7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

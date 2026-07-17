@@ -9,7 +9,8 @@ public class GameController : MonoBehaviour
     public Slider progressSlider;
 
     public GameObject player;
-    public GameObject LoadCanvas;
+    public GameObject LoadCanvas; // load circle
+    public GameObject HoldE; //Hold E canvas
     public List<GameObject> levels;
     private int currentLevelIndex = 0;
 
@@ -20,7 +21,8 @@ public class GameController : MonoBehaviour
         progressSlider.value = 0;
         Gem.OnGemCollect += IncreaseProgressAmount;
         HoldToLoadLevel.OnHoldComplete += LoadNextLevel;
-        LoadCanvas.SetActive(false);
+        LoadCanvas.SetActive(false); //circle
+        HoldE.SetActive(false); // Hold E
     }
 
     //Increases progress on Gem bar
@@ -34,6 +36,7 @@ public class GameController : MonoBehaviour
         {
             //Level complete!
             LoadCanvas.SetActive(true); //Lets the player load the next level aka show the ability to load next level
+            HoldE.SetActive(true); // Hold E appears
             Debug.Log("Level Compelte");
             AudioManager.Instance.musicSource.Stop(); //Stops the game theme music
             AudioManager.Instance.PlaySFX("LevelComplete"); //Playes the the level Complete sound
